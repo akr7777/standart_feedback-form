@@ -28,7 +28,7 @@ app.post('/contact_form', async (req: Request, res: Response) => {
         if (admins_ids) {
             admins_ids.map(tg_id => bot.sendMessage(tg_id, responseText))
         }
-        res.send({ message: 'success', status: 200 })
+        res.send({ message: 'success', status: 277 })
     } catch (error: any) {
         bot.sendMessage(process.env.ADMIN_TG_ID, 'Что-то пошло не так...')
         res.send({ message: 'error', status: 500 })

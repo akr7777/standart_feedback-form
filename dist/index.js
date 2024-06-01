@@ -34,7 +34,7 @@ app.post('/contact_form', (req, res) => __awaiter(void 0, void 0, void 0, functi
         if (admins_ids) {
             admins_ids.map(tg_id => telegram_1.bot.sendMessage(tg_id, responseText));
         }
-        res.send({ message: 'success', status: 200 });
+        res.send({ message: 'success', status: 277 });
     }
     catch (error) {
         telegram_1.bot.sendMessage(process.env.ADMIN_TG_ID, 'Что-то пошло не так...');
