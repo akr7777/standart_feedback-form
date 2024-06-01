@@ -19,6 +19,7 @@ app.get('/', async (req: Request, res: Response) => {
     res.send({ message: 'HI!' })
 })
 
+
 app.post('/contact_form', async (req: Request, res: Response) => {
     const contactFromData: ReqBodyType = { ...req.body, origin: req.headers.origin }
     
