@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { bot } from './telegram';
 import { makeTextToAdmin } from './functions';
-import { ReqBodyType } from './types';
+import { ReqBodyType, TgAdminsDataType } from './types';
+import { getAdminData } from './admins';
 const express = require('express')
 const bodyParser = require('body-parser')
 require('dotenv').config();
@@ -15,17 +16,21 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({extended: false}))
 app.use(cors({ origin: process.env.ORIGINS?.split(' ') }));
 
+
+
+
 app.get('/', async (req: Request, res: Response) => {
     res.send({ message: 'HI!' })
 })
-
 
 app.post('/contact_form', async (req: Request, res: Response) => {
     const contactFromData: ReqBodyType = { ...req.body, origin: req.headers.origin }
     
     try {
         const responseText = makeTextToAdmin(contactFromData)
-        const admins_ids: string[] | undefined = process.env.ADMIN_TG_IDS?.split(' ')
+        // const admins_ids: string[] | undefined = process.env.ADMIN_TG_IDS?.split(' ')
+
+        const admins_ids: Array<string> = getAdminData(req.headers.origin)
         if (admins_ids) {
             admins_ids.map(tg_id => bot.sendMessage(tg_id, responseText))
         }
@@ -37,5 +42,6 @@ app.post('/contact_form', async (req: Request, res: Response) => {
 })
 
 app.listen(PORT, () => {
+    // getAdminData('http://localhost:5173')
     console.log('App started on port', PORT)
 })

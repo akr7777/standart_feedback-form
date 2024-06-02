@@ -12,6 +12,7 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const telegram_1 = require("./telegram");
 const functions_1 = require("./functions");
+const admins_1 = require("./admins");
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -26,11 +27,11 @@ app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send({ message: 'HI!' });
 }));
 app.post('/contact_form', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _b;
     const contactFromData = Object.assign(Object.assign({}, req.body), { origin: req.headers.origin });
     try {
         const responseText = (0, functions_1.makeTextToAdmin)(contactFromData);
-        const admins_ids = (_b = process.env.ADMIN_TG_IDS) === null || _b === void 0 ? void 0 : _b.split(' ');
+        // const admins_ids: string[] | undefined = process.env.ADMIN_TG_IDS?.split(' ')
+        const admins_ids = (0, admins_1.getAdminData)(req.headers.origin);
         if (admins_ids) {
             admins_ids.map(tg_id => telegram_1.bot.sendMessage(tg_id, responseText));
         }
@@ -42,5 +43,6 @@ app.post('/contact_form', (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 }));
 app.listen(PORT, () => {
+    // getAdminData('http://localhost:5173')
     console.log('App started on port', PORT);
 });

@@ -6,3 +6,8 @@ export type ReqBodyType = {
     content: string | undefined,
     origin: string | undefined,
 }
+
+export type TgAdminsDataType = {
+    site: string,
+    tg_admins: Array<string>
+}

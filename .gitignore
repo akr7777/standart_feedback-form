@@ -1,2 +1,9 @@
 .env
+
+.sites-tg-list.json
+sites-tg-list.json
+/src/sites-tg-list.json
+src/sites-tg-list.json
+
 /node_modules
+/dist
