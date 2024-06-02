@@ -31,6 +31,11 @@ app.post('/contact_form', async (req: Request, res: Response) => {
         // const admins_ids: string[] | undefined = process.env.ADMIN_TG_IDS?.split(' ')
 
         const admins_ids: Array<string> = getAdminData(req.headers.origin)
+
+        if (!admins_ids || admins_ids.length < 1) {
+            return res.send({ message: 'no data about admin', status: 511 })
+        }
+
         if (admins_ids) {
             admins_ids.map(tg_id => bot.sendMessage(tg_id, responseText))
         }

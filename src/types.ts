@@ -8,6 +8,6 @@ export type ReqBodyType = {
 }
 
 export type TgAdminsDataType = {
-    site: string,
+    site: Array<string>,
     tg_admins: Array<string>
 }

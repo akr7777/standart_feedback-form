@@ -32,6 +32,9 @@ app.post('/contact_form', (req, res) => __awaiter(void 0, void 0, void 0, functi
         const responseText = (0, functions_1.makeTextToAdmin)(contactFromData);
         // const admins_ids: string[] | undefined = process.env.ADMIN_TG_IDS?.split(' ')
         const admins_ids = (0, admins_1.getAdminData)(req.headers.origin);
+        if (!admins_ids || admins_ids.length < 1) {
+            return res.send({ message: 'no data about admin', status: 511 });
+        }
         if (admins_ids) {
             admins_ids.map(tg_id => telegram_1.bot.sendMessage(tg_id, responseText));
         }
