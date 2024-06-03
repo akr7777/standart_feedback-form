@@ -8,21 +8,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const telegram_1 = require("./telegram");
 const functions_1 = require("./functions");
 const admins_1 = require("./admins");
+const _origins_1 = require("./_origins");
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
+const PORT = _origins_1.APP_PORT;
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors({ origin: (_a = process.env.ORIGINS) === null || _a === void 0 ? void 0 : _a.split(' ') }));
+// app.use(cors({ origin: process.env.ORIGINS?.split(' ') }));
+app.use(cors({ origin: _origins_1.APP_ORIGINS }));
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send({ message: 'HI!' });
 }));

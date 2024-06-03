@@ -1,5 +1,5 @@
 import { TgAdminsDataType } from "./types";
-import * as data from './sites-tg-list.json'
+import * as data from './_sites-tg-list.json'
 
 const sites_tg_list: Array<TgAdminsDataType> = data.data
 

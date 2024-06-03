@@ -1,20 +1,23 @@
 import { Request, Response } from 'express';
 import { bot } from './telegram';
 import { makeTextToAdmin } from './functions';
-import { ReqBodyType, TgAdminsDataType } from './types';
+import { ReqBodyType } from './types';
 import { getAdminData } from './admins';
+import { APP_ORIGINS, APP_PORT } from './_origins';
 const express = require('express')
 const bodyParser = require('body-parser')
 require('dotenv').config();
 
 const cors = require('cors')
 const app = express()
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
+const PORT = APP_PORT;
 
 app.use(express.json());
 app.use(bodyParser.json())
 app.use(express.urlencoded({extended: false}))
-app.use(cors({ origin: process.env.ORIGINS?.split(' ') }));
+// app.use(cors({ origin: process.env.ORIGINS?.split(' ') }));
+app.use(cors({ origin: APP_ORIGINS }));
 
 
 

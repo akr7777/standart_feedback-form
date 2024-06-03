@@ -1,9 +1,12 @@
 .env
 
-.sites-tg-list.json
-sites-tg-list.json
-/src/sites-tg-list.json
-src/sites-tg-list.json
+._sites-tg-list.json
+_sites-tg-list.json
+/src/_sites-tg-list.json
+src/_sites-tg-list.json
+
+src/_origins.ts
+/src/_origins.ts
 
 /node_modules
 /dist
