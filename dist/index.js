@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cors({ origin: process.env.ORIGINS?.split(' ') }));
 app.use(cors({ origin: _origins_1.APP_ORIGINS }));
+console.log('APP_ORIGINS=', _origins_1.APP_ORIGINS);
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send({ message: 'HI!' });
 }));

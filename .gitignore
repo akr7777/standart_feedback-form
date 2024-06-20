@@ -10,3 +10,4 @@ src/_origins.ts
 
 /node_modules
 /dist
+/dist/*

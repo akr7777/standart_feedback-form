@@ -19,6 +19,7 @@ app.use(express.urlencoded({extended: false}))
 // app.use(cors({ origin: process.env.ORIGINS?.split(' ') }));
 app.use(cors({ origin: APP_ORIGINS }));
 
+console.log('APP_ORIGINS=', APP_ORIGINS);
 
 
 
